@@ -22,6 +22,7 @@ const emoji = document.querySelector('.emoji');
 const userQuote = document.querySelector('.userQuote');
 const url = 'https://zenquotes.io/api/random';
 const pic = 'https://picsum.photos/2560/1440?random=1'
+// const textField = document.querySelector('.textField');
 // const url = 'https://jsonplaceholder.typicode.com/posts';
 // app.use(cors({origin: true, credentials: true}));
 // const cors = require('cors');
@@ -59,11 +60,11 @@ async function getQuote() {
 async function postQuote(data) {
     try {
         const response = await fetch(url, {
-            method: 'POST', // HTTP method
+            method: 'POST',
             headers: {
-                'Content-Type': 'application/json', // Specify JSON format
+                'Content-Type': 'application/json', 
             },
-            body: JSON.stringify(data), // Convert data to JSON
+            body: JSON.stringify(data),
         });
 
         if (response.ok) {
@@ -76,20 +77,30 @@ async function postQuote(data) {
         console.log('Error:', error);
     }
 }
+
+function ClearFields() {
+    let textfield = ""
+}
+
 submitBtn.addEventListener('click', () => {
     const data = {
-        quote: userQuote.value, 
+        quote: userQuote.value,
+
         
     };
-
-    postQuote(data); // Call the POST function with user data
+    alert('Your quote has been submitted!');
+    postQuote(data); 
+    ClearFields();
 });
 
-// Fetch a random quote on page load
+
 getQuote();
 
 
-quoteBtn.addEventListener('click', getQuote, getPic);{}
+
+quoteBtn.addEventListener('click', getQuote, getPic);{
+    // location.reload();
+}
     
 // submitBtn.addEventListener('click',() => {
 //     async function submit() {
