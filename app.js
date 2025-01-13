@@ -56,15 +56,65 @@ async function getQuote() {
     }
     
 }
-getQuote();
+async function postQuote(data) {
+    try {
+        const response = await fetch(url, {
+            method: 'POST', // HTTP method
+            headers: {
+                'Content-Type': 'application/json', // Specify JSON format
+            },
+            body: JSON.stringify(data), // Convert data to JSON
+        });
 
-submitBtn.addEventListener('click', );{
-    async function submit() {
-        
+        if (response.ok) {
+            const result = await response.json();
+            console.log('POST Success:', result);
+        } else {
+            console.log('POST Failed:', response.status);
+        }
+    } catch (error) {
+        console.log('Error:', error);
     }
 }
+submitBtn.addEventListener('click', () => {
+    const data = {
+        quote: userQuote.value, 
+        
+    };
+
+    postQuote(data); // Call the POST function with user data
+});
+
+// Fetch a random quote on page load
+getQuote();
+
+
 quoteBtn.addEventListener('click', getQuote, getPic);{}
     
+// submitBtn.addEventListener('click',() => {
+//     async function submit() {
+//         fetch(url, {
+//             method: 'POST', 
+//             headers: {
+//                 'Content-Type': 'application/json' 
+//             },
+//             body: JSON.stringify({ data: inputValue })
+//         })
+//         .then(response => {
+//             if (!response.ok) {
+//                 throw new Error(`HTTP error! status: ${response.status}`);
+//             }
+//             return response.json();
+//         })
+//         .then(data => {
+//             console.log('Success:', data);
+//         })
+//         .catch(error => {
+//             console.error('Error:', error);
+//         });
+        
+//     }
+// })
 
 // getQuote= () => fetch(url)
 // .then(item => {
@@ -81,4 +131,24 @@ quoteBtn.addEventListener('click', getQuote, getPic);{}
 //     // Clear current background
 //     document.body.style.backgroundImage = url(`https://picsum.photos/2560/1440?random=${randomValue}`);
 // }
+
+// fetch(url, {
+//     method: 'POST', 
+//     headers: {
+//         'Content-Type': 'application/json' 
+//     },
+//     body: JSON.stringify({ data: inputValue })
+// })
+// .then(response => {
+//     if (!response.ok) {
+//         throw new Error(`HTTP error! status: ${response.status}`);
+//     }
+//     return response.json();
+// })
+// .then(data => {
+//     console.log('Success:', data);
+// })
+// .catch(error => {
+//     console.error('Error:', error);
+// });
 
